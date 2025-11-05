@@ -33,6 +33,8 @@ namespace Service.Implementation
                 .Count();
 
 
+
+
             int _Total =      await  _unitOfWork.GetRepository<Product, int>().CountAsync(spec);
             var paginated=new PaginatedResult<ProductDto>()
             { Data = _mapper.Map<IEnumerable<ProductDto>>(products),Page_Index=spec_params.PagaIndex ,Count=_count,Total=_Total};
