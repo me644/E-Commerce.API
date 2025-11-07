@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Contracts;
+using E_Commerce.API.Factories;
 using E_Commerce.API.MIddleWares;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -52,10 +53,10 @@ namespace MyProject
 
 
             //validations
-   builder.Services.Configure<ApiBehaviorOptions>(options=>
-   
-   options.InvalidModelStateResponseFactory
-   )
+            builder.Services.Configure<ApiBehaviorOptions>(options =>
+
+            options.InvalidModelStateResponseFactory = ApiResponseFactory.CustomValidationErrorResponse
+            );
 
 
             // ----------------------
