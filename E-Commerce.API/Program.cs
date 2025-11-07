@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Contracts;
+using E_Commerce.API.MIddleWares;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Data;
@@ -62,6 +63,8 @@ namespace MyProject
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseMiddleware<GlobalHandllingMiddleWare>();
 
             app.UseHttpsRedirection();
 

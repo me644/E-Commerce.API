@@ -19,7 +19,7 @@ namespace Service.MappingServices
 
             CreateMap<ProductBrand, BrandDto>();
 
-        CreateMap<ProductType, TypeDto>();
+       CreateMap<ProductType, TypeDto>();
 
 
             CreateMap<Product, ProductDto>()
