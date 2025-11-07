@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Contracts;
 using E_Commerce.API.MIddleWares;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Data;
@@ -48,6 +49,14 @@ namespace MyProject
             // ----------------------
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+
+            //validations
+   builder.Services.Configure<ApiBehaviorOptions>(options=>
+   
+   options.InvalidModelStateResponseFactory
+   )
+
 
             // ----------------------
             // 6️⃣ Build the app
