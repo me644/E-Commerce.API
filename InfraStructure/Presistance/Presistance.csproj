@@ -12,11 +12,14 @@
 
   <ItemGroup>
     <Folder Include="Data\DataSeed\" />
+    <Folder Include="IdentityMig\Migration\" />
     <Folder Include="Migrations\" />
+    <Folder Include="IdenittyMig\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    <PackageReference Include="StackExchange.Redis" Version="2.9.32" />
   </ItemGroup>
 
 </Project>

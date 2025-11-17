@@ -16,12 +16,22 @@ namespace Service.Implementation
        // public IProductService ProductService => throw new NotImplementedException();
 
         private readonly IUnitOfWork _unitOfWork;
-        public ServiceManger(IUnitOfWork unitOfWork,IMapper _mapper)
+        private readonly IBasketRepository _basketRepository;
+        private readonly Lazy<IBasketService> _basketService;
+        private readonly IMapper _mapper;
+        public ServiceManger(IUnitOfWork unitOfWork,IMapper mapper, IBasketRepository basketRepositor)
         {
+            _mapper = mapper;
+
             _ProductSerive = new Lazy<IProductService>(() => new ProductSerivce(unitOfWork, _mapper));
             _unitOfWork = unitOfWork;
+            _basketRepository= basketRepositor;
+            _basketService = new Lazy<IBasketService>(() => new BasketService(_basketRepository, _mapper));
+
 
         }
         public IProductService ProductService => _ProductSerive.Value;
+
+        public IBasketService BasketService => _basketService.Value;
     }
 }

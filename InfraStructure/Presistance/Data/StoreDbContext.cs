@@ -15,7 +15,6 @@ namespace Presentation.Data
 
 
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options) { }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // base.OnModelCreating(modelBuilder);

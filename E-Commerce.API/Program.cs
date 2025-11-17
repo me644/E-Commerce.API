@@ -1,16 +1,22 @@
 ﻿using AutoMapper;
 using Domain.Contracts;
+using Domain.Entites.IdentityModule;
 using E_Commerce.API.Factories;
 using E_Commerce.API.MIddleWares;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql.TypeMapping;
 using Presentation.Data;
+using Presistance.Data;
 using Presistance.Repositories;
 using Service.Abstraction.Contracts;
 using Service.Implementation;
 using Service.MappingServices;
+using StackExchange.Redis;
 using System;
+using System.Data;
 
 namespace MyProject
 {
@@ -26,18 +32,36 @@ namespace MyProject
             builder.Services.AddDbContext<StoreDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+            builder.Services.AddScoped<IDataSeed, DataSeeding>();
+
+
+            builder.Services.AddSingleton<IConnectionMultiplexer>(S =>
+            {
+                return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("RedisConnection")!);
+            });
+
+            builder.Services.AddDbContext<IdentityStoreDbContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("IdentityConnection")));
             // ----------------------
             // 2️⃣ Add UnitOfWork
             // ----------------------
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+          
+            builder.Services.AddScoped<IBasketRepository,BasketRepository>();
 
             // ----------------------
             // 3️⃣ Add AutoMapper
             // ----------------------
             builder.Services.AddAutoMapper(m => m.AddProfile<ProductProfile>()); // أو typeof(MappingProfile)
 
-
+            builder.Services.AddAutoMapper(m => m.AddProfile<BasketProfile>());
             builder.Services.AddScoped<ISerivceMnager, ServiceManger>();
+
+                builder.Services.AddIdentity<User,IdentityRole>(option=>option.Password.RequireDigit=true)
+                
+ 
+                    .AddEntityFrameworkStores<IdentityStoreDbContext>();
 
             builder.Services.AddTransient<PictureUrlResolver>();    
             // ----------------------
@@ -62,8 +86,12 @@ namespace MyProject
             // ----------------------
             // 6️⃣ Build the app
             // ----------------------
-            var app = builder.Build();
 
+            
+            var app = builder.Build();
+            var oo=app.Services.CreateScope();
+            var objectIdenSeeding = oo.ServiceProvider.GetRequiredService<IDataSeed>();
+            objectIdenSeeding.SeedIDentityAsync();
         
             // ----------------------
             // 7️⃣ Configure Middleware
