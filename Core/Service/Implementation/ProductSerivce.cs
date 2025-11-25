@@ -1,4 +1,4 @@
-﻿    using AutoMapper;
+﻿ using AutoMapper;
 using Domain.Contracts;
 using Domain.Entites.Product;
 using Domain.Exceptions;
@@ -31,7 +31,7 @@ namespace Service.Implementation
             var spec_count = new CountSpecification(spec_params); 
             var products = await _unitOfWork.GetRepository<Product, int>().GetAllAsync(spec);
             int _count=products
-                .Count();
+                .Count(); 
 
 
 

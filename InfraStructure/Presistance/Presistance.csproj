@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\DataSeed\" />
+    <Folder Include="Data\DataSeed\Delv_methodes\" />
     <Folder Include="IdentityMig\Migration\" />
     <Folder Include="Migrations\" />
     <Folder Include="IdenittyMig\" />

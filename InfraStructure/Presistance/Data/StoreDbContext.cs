@@ -1,4 +1,5 @@
-﻿using Domain.Entites.Product;
+﻿using Domain.Entites.OrderModule;
+using Domain.Entites.Product;
 using Microsoft.EntityFrameworkCore;
 using Presistance.Configuration;
 using System;
@@ -20,12 +21,15 @@ namespace Presentation.Data
             // base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfigurations());
+            modelBuilder.ApplyConfiguration(new OrderItemConfigurations());
+            modelBuilder.ApplyConfiguration(new DeleviryMehodeConfigurations());
 
-         //assembly for the stratUp   modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-         
+            //assembly for the stratUp   modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
 
             ///made embty class to know him read from what
-           // modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssemblyRefernce).Assembly);
+            // modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssemblyRefernce).Assembly);
         }
 
 
@@ -35,6 +39,13 @@ namespace Presentation.Data
 
 
         public DbSet<ProductBrand> ProductBrands { get; set; }
+
+        public DbSet<Order>  Orders { get; set; }
+
+
+        public DbSet<OrderItems>  OrderItems { get; set;     }
+        public  DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+
 
 
     }

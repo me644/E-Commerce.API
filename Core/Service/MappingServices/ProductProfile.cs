@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Domain.Entites.OrderModule;
 using Domain.Entites.Product;
 using Shared.DTO;
+using Shared.Shared.OrderModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,7 @@ namespace Service.MappingServices
                 options => options.MapFrom(src => src.ProductType.Name))
      .ForMember(dest => dest.PictureUrl, options => options.MapFrom<PictureUrlResolver>());
 
+        
 
 
 
@@ -39,8 +42,7 @@ namespace Service.MappingServices
 
 
 
-
-
+        
 
 
 

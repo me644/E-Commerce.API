@@ -1,6 +1,7 @@
 ﻿
 using Domain.Contracts;
 using Domain.Entites.IdentityModule;
+using Domain.Entites.OrderModule;
 using Domain.Entites.Product;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -63,6 +64,18 @@ namespace Presistance.Data
                     if (products is not null && products.Any())
                     {
                         _store.AddRange(products);
+                    }
+
+                }
+
+                if (!_store.DeliveryMethods.Any())
+                {
+                    var Delv_methods_Json = File.ReadAllText("..\\InfraStructure\\Presistance\\Data\\DataSeed\\Delv_methodes\\delivery.json");
+
+                    var Delv_methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(Delv_methods_Json);
+                    if(Delv_methods.Any())
+                    {
+                        _store.DeliveryMethods.AddRange(Delv_methods);
                     }
 
                 }

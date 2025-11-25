@@ -54,10 +54,11 @@ namespace MyProject
             // 3️⃣ Add AutoMapper
             // ----------------------
             builder.Services.AddAutoMapper(m => m.AddProfile<ProductProfile>()); // أو typeof(MappingProfile)
-
+            builder.Services.AddAutoMapper(m => m.AddProfile<OrderProfile>());
             builder.Services.AddAutoMapper(m => m.AddProfile<BasketProfile>());
             builder.Services.AddScoped<ISerivceMnager, ServiceManger>();
 
+           
                 builder.Services.AddIdentity<User,IdentityRole>(option=>option.Password.RequireDigit=true)
                 
  
@@ -91,6 +92,8 @@ namespace MyProject
             var app = builder.Build();
             var oo=app.Services.CreateScope();
             var objectIdenSeeding = oo.ServiceProvider.GetRequiredService<IDataSeed>();
+            objectIdenSeeding.DataSeedAsync();
+
             objectIdenSeeding.SeedIDentityAsync();
         
             // ----------------------

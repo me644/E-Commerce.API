@@ -18,7 +18,7 @@ namespace Presistance.Configuration
 
 
             builder.Property(e => e.OrderPayment).HasConversion(e => e.ToString(), e => (OrderPaymentMethode)Enum.Parse<OrderPaymentMethode>(e));
-            builder.HasOne(o => o.DeliveryMethod).WithMany();//order  is  delivered by one  methode
+            builder.HasOne(o => o.DeliveryMethod).WithMany().OnDelete(DeleteBehavior.SetNull);//order  is  delivered by one  methode
                                                              //  Delveriy for  many orders 
 
         }

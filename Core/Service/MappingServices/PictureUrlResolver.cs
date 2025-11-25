@@ -18,5 +18,5 @@ namespace Service.MappingServices
 
             return $"{configurationProvider.GetSection("URLS")["BaseUrl"]}{source.PictureUrl}";
         }
-    }
+    } 
 }

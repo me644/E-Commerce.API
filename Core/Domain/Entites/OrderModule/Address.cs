@@ -9,8 +9,18 @@ namespace Domain.Entites.OrderModule
   
         public class Address
         {
-          
-            public string Firstname { get; set; } = string.Empty;
+
+        public Address() { }
+        public Address(string firstname, string lastname, string country, string city, string street)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+            Country = country;
+            City = city;
+            Street = street;
+        }
+
+        public string Firstname { get; set; } = string.Empty;
 
             public string Lastname { get; set; } = string.Empty;
 

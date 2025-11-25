@@ -13,5 +13,8 @@ namespace Service.Abstraction.Contracts
 
         public IBasketService BasketService { get; }
 
+
+       public  IOrderService OrderService { get; }
+
     }
 }

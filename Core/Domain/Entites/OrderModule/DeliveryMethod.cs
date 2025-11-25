@@ -8,6 +8,16 @@ namespace Domain.Entites.OrderModule
 {
     public class DeliveryMethod:Base<int>
     {
+
+        public DeliveryMethod() { }
+        public DeliveryMethod(string shortName, string description, string deliveryTime, decimal price)
+        {
+            ShortName = shortName;
+            Description = description;
+            DeliveryTime = deliveryTime;
+            Price = price;
+        }
+
         public  string ShortName {  get; set; }
         public string Description { get; set; }
 

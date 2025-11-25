@@ -23,7 +23,7 @@ namespace Presistance
           //  specfications.Total=query.Count();
             
             if(specfications.OrderBy is not null)
-            {
+            {                                                                                    
               query=  query.OrderBy(specfications.OrderBy);
 
             }
@@ -37,7 +37,6 @@ namespace Presistance
 
             if(specfications.IsPaginated is true)
             {
-
                 query = query.Skip(specfications.Skip).Take(specfications.Take);
             }
 
