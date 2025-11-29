@@ -14,6 +14,7 @@ namespace Shared.ModelErros
         public  int statusCode {  get; set; }
 
         public string message { get; set; } = string.Empty;
+        public IEnumerable<string>? Errors {  get; set; }
 
         public override string ToString()
         {

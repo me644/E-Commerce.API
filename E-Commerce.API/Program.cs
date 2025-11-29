@@ -58,8 +58,8 @@ namespace MyProject
             builder.Services.AddAutoMapper(m => m.AddProfile<BasketProfile>());
             builder.Services.AddScoped<ISerivceMnager, ServiceManger>();
 
-           
-                builder.Services.AddIdentity<User,IdentityRole>(option=>option.Password.RequireDigit=true)
+
+            builder.Services.AddIdentity<User, IdentityRole>(option =>  option.Password.RequireDigit = true)  
                 
  
                     .AddEntityFrameworkStores<IdentityStoreDbContext>();

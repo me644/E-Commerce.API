@@ -73,36 +73,37 @@ namespace E_Commerce.API.MIddleWares
 
         private async Task HandlleExceptionAsync(HttpContext context, Exception ex)
         {
-            //1  change Status
-            // context.Response.StatusCode=(int) HttpStatusCode .InternalServerError;
-            // this is can be  resuable  as
 
+            var reponse = new Errorr_Detailes()
+            {
+
+                message = ex.Message
+
+            };
 
 
             context.Response.StatusCode = ex switch {
 
 
                 ProductNotFoundException => StatusCodes.Status404NotFound,
+                ValidationExceptions validation =>handlling_validations(validation.Errors,reponse),
                 (_) => StatusCodes.Status500InternalServerError
 
 
             };
-            //2  content type
+
             context.Response.ContentType = "application/json";
 
-            //3 write   repsonse in body
+         
+           await   context.Response.WriteAsync(reponse.ToString());
+        }
 
-            var Body = new Errorr_Detailes()
-            {
-                
-                statusCode = context.Response.StatusCode,
-                message=ex.Message
+        public int handlling_validations(IEnumerable<string> errors, Errorr_Detailes reponse)
+        {
+            reponse.Errors = errors;
 
-            }.ToString();
-            //1 st methode//  context.Response.WriteAsJsonAsync(Body);
-            //  methode 2 iss better  to convert  it  once  and resubale it
+            return StatusCodes.Status404NotFound;
 
-           await   context.Response.WriteAsync(Body);
         }
     }
 }

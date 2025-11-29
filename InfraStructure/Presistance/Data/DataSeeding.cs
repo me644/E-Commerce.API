@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Presistance.Data
 {
-    public class DataSeeding(StoreDbContext _store,RoleManager<IdentityRole>_roleManager,UserManager<User>_userManager) : IDataSeed
+    public class DataSeeding(StoreDbContext _store,RoleManager<IdentityRole>_roleManager ,UserManager<User> _userManager) : IDataSeed
     {
         public async Task DataSeedAsync()
         {
