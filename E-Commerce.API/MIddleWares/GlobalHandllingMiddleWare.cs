@@ -40,7 +40,7 @@ namespace E_Commerce.API.MIddleWares
 
                 if (context.Response.StatusCode == (int)HttpStatusCode.NotFound)
                 {
-                    await NotFoundApi(context);
+                    await NotFoundApi(context);   
                 }
               
                

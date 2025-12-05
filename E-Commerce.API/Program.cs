@@ -59,12 +59,18 @@ namespace MyProject
             builder.Services.AddScoped<ISerivceMnager, ServiceManger>();
 
 
-            builder.Services.AddIdentity<User, IdentityRole>(option =>  option.Password.RequireDigit = true)  
+            builder.Services.AddIdentity<User, IdentityRole>(option => {
+                option.Password.RequireDigit = true;
+                
+                option.User.RequireUniqueEmail = true;
+                })  
                 
  
                     .AddEntityFrameworkStores<IdentityStoreDbContext>();
 
-            builder.Services.AddTransient<PictureUrlResolver>();    
+            builder.Services.AddTransient<PictureUrlResolver>();
+
+            
             // ----------------------
             // 4️⃣ Add Controllers
             // ----------------------

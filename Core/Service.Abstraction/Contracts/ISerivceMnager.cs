@@ -16,5 +16,7 @@ namespace Service.Abstraction.Contracts
 
        public  IOrderService OrderService { get; }
 
+        public  IAuthenticationService AuthenticationService { get; }
+
     }
 }
